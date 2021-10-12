@@ -1,0 +1,14 @@
+.custom-horizontal-menu {
+  display: flex;
+  justify-content: center;
+  > ul > li {
+    display: flex !important;
+    justify-content: center;
+    width: 200px;
+  }
+}
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

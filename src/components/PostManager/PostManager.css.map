@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,uBAAuB,CAAC;EACtB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;CAMxB;;AARD,AAGE,uBAHqB,GAGnB,EAAE,GAAG,EAAE,CAAC;EACR,OAAO,EAAE,eAAe;EACxB,eAAe,EAAE,MAAM;EACvB,KAAK,EAAE,KAAK;CACb;;AAEH,AAAA,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "PostManager.scss"
+    ],
+    "names": [],
+    "file": "PostManager.css"
+}

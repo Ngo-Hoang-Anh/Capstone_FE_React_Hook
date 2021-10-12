@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
 import "./App.css";
-
 import AuthService from "./services/auth.service";
-
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
-import BoardAdmin from "./components/BoardAdmin";
-
-// import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 
+const Login = React.lazy(() => import("./components/Login"));
+const Register = React.lazy(() => import("./components/Register"));
+const Home = React.lazy(() => import("./components/Home"));
+const Profile = React.lazy(() => import("./components/Profile"));
+const BoardUser = React.lazy(() => import("./components/BoardUser"));
+const BoardModerator = React.lazy(() => import("./components/BoardModerator"));
+const BoardAdmin = React.lazy(() => import("./components/BoardAdmin"));
+// import AuthVerify from "./common/AuthVerify";
+const PostManager = React.lazy(() =>
+  import("./components/PostManager/PostManager.js")
+);
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -56,6 +57,11 @@ const App = () => {
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/post-manager"} className="nav-link">
+              Quản lý bài đăng
             </Link>
           </li>
 
@@ -115,15 +121,18 @@ const App = () => {
       </nav>
 
       <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-          <Route path="/user" component={BoardUser} />
-          <Route path="/mod" component={BoardModerator} />
-          <Route path="/admin" component={BoardAdmin} />
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/post-manager" component={PostManager} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/user" component={BoardUser} />
+            <Route path="/mod" component={BoardModerator} />
+            <Route path="/admin" component={BoardAdmin} />
+          </Switch>
+        </Suspense>
       </div>
 
       {/* <AuthVerify logOut={logOut}/> */}
